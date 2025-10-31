@@ -83,15 +83,29 @@ const LanguageSwitcher = ({ currentLang, onSwitch, isMobile = false }) => {
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(true);
   // Added state for current language
   const [currentLang, setCurrentLang] = useState('fr');
   const pathname = usePathname();
 
   // Scroll and Blur Logic
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 15);
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 15);
+
+      // Hide navbar when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setIsHidden(true);
+      } else if (currentScrollY < lastScrollY || currentScrollY <= 50) {
+        setIsHidden(false);
+      }
+
+      lastScrollY = currentScrollY;
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -116,18 +130,20 @@ export default function Navbar() {
   return (
     // Header Wrapper with Scroll Transition
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${glassmorphismClasses}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${glassmorphismClasses} ${
+        isHidden ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'
+      }`}
       style={{
-        transition: 'background-color 300ms, box-shadow 300ms, backdrop-filter 300ms'
+        transition: 'background-color 300ms, box-shadow 300ms, backdrop-filter 300ms, transform 500ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease-in-out'
       }}
     >
       {/* Custom Keyframe for Dropdown - Moved to globals.css */}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20 pt-4 pb-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20 pt-3 pb-3">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center group">
-          <div className="relative w-64 h-16 mr-2">
+        <Link href="/" className="flex items-center group p-1">
+          <div className="relative lg:w-64 lg:h-16 w-32 h-12">
             <Image
               src="https://hpymvpexiunftdgeobiw.supabase.co/storage/v1/object/public/Assalam/fondation%20francais.png"
               alt="Logo Fondation Assalam"

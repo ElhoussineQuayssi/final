@@ -7,7 +7,7 @@ import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
 import Textarea from "@/components/Textarea/Textarea";
 import Alert from "@/components/Alert/Alert";
-import UnifiedHero from "@/components/UnifiedHero";
+import UnifiedHeroProject from "@/components/UnifiedHero/UnifiedHeroProject";
 import StyledProjectInfoCard from "@/components/StyledProjectInfoCard/StyledProjectInfoCard";
 import ProjectContentSection from "@/components/ProjectContentSection/ProjectContentSection";
 import ProjectGallery from "@/components/ProjectGallery/ProjectGallery";
@@ -89,9 +89,9 @@ export default async function ProjectPage({ params }) {
     // Main background fix
     <main className="min-h-screen" style={{ backgroundColor: BACKGROUND }}>
       {/* 1. Hero Section (Styled with constants) */}
-      <UnifiedHero
+      <UnifiedHeroProject
         title={project.title}
-        subtitle={project.excerpt}
+        description={project.excerpt}
         images={[
           project.image || "/projects/foundation1.jpg",
           ...project.project_images?.slice(0, 3).map(img => img.image_url.replace(/^"|"$/g, '')) || ["/projects/foundation2.jpg", "/projects/foundation3.jpg"]
@@ -100,7 +100,7 @@ export default async function ProjectPage({ params }) {
 
       <Container className="pb-20">
         {/* 2. Project Info Cards (Styled with constants) */}
-        <section className="mb-16 -mt-20 relative z-10">
+        <section className="mb-16 -mt-10 relative z-10">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {projectInfo.map((item, index) => (
               <StyledProjectInfoCard

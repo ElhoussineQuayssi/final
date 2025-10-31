@@ -8,6 +8,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --font-heading: var(--font-cormorant-garamond);
+  --font-body: var(--font-roboto);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -22,7 +24,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-roboto), Arial, Helvetica, sans-serif;
 }
 
 /* Custom animations from temp_repo */
@@ -48,4 +50,115 @@ body {
 
 .animate-pulse-slow {
   animation: pulse-slow 3s infinite;
+}
+
+/* Flip card styles */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.hover\:rotate-y-180:hover {
+  transform: rotateY(180deg);
+}
+
+/* Hero animations */
+@keyframes fade-in-up-custom {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fill-progress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-fade-in-up-custom {
+  animation: fade-in-up-custom 1s ease-out;
+}
+
+.animate-fill-progress {
+  animation: fill-progress 7s linear;
+}
+
+/* Fade in animation for images */
+@keyframes fade-in-image {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-image {
+  animation: fade-in-image 1.5s ease-in-out;
+}
+
+/* Typography utilities for Cormorant Garamond headings */
+.font-heading {
+  font-family: var(--font-cormorant-garamond), serif;
+  font-weight: 300;
+}
+
+.font-heading-medium {
+  font-family: var(--font-cormorant-garamond), serif;
+  font-weight: 400;
+}
+
+.font-heading-semibold {
+  font-family: var(--font-cormorant-garamond), serif;
+  font-weight: 500;
+}
+
+.font-heading-bold {
+  font-family: var(--font-cormorant-garamond), serif;
+  font-weight: 600;
+}
+
+.font-heading-extrabold {
+  font-family: var(--font-cormorant-garamond), serif;
+  font-weight: 700;
+}
+
+/* Typography utilities for Roboto body text */
+.font-body {
+  font-family: var(--font-roboto), sans-serif;
+  font-weight: 400;
+}
+
+.font-body-light {
+  font-family: var(--font-roboto), sans-serif;
+  font-weight: 300;
+}
+
+.font-body-medium {
+  font-family: var(--font-roboto), sans-serif;
+  font-weight: 500;
+}
+
+.font-body-bold {
+  font-family: var(--font-roboto), sans-serif;
+  font-weight: 700;
 }

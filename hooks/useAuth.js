@@ -8,6 +8,24 @@ export function useAuth() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const fetchFullUser = useCallback(async () => {
+    try {
+      const response = await fetch('/api/auth/me');
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data.user);
+        return data.user;
+      } else {
+        setUser(null);
+        return null;
+      }
+    } catch (err) {
+      console.error('Fetch full user error:', err);
+      setUser(null);
+      return null;
+    }
+  }, []);
+
   // Initialize auth state on mount
   useEffect(() => {
     const initializeAuth = async () => {
@@ -18,7 +36,7 @@ export function useAuth() {
           console.error('Session error:', sessionError);
           setError(sessionError.message);
         } else if (session?.user) {
-          setUser(session.user);
+          await fetchFullUser();
         }
       } catch (err) {
         console.error('Auth initialization error:', err);
@@ -33,10 +51,13 @@ export function useAuth() {
     // Listen for auth changes
     const { data: { subscription } } = supabaseClient.auth.onAuthStateChange(
       async (event, session) => {
+        console.log('useAuth: onAuthStateChange triggered:', event, !!session?.user);
         if (session?.user) {
-          setUser(session.user);
+          console.log('useAuth: onAuthStateChange fetching full user');
+          await fetchFullUser();
           setError(null);
         } else {
+          console.log('useAuth: onAuthStateChange setting user to null');
           setUser(null);
         }
         setIsLoading(false);
@@ -51,6 +72,7 @@ export function useAuth() {
     setError(null);
 
     try {
+      console.log('useAuth: Starting login API call');
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
@@ -60,12 +82,20 @@ export function useAuth() {
       });
 
       const data = await response.json();
+      console.log('useAuth: API response received:', response.ok, data);
 
       if (!response.ok) {
         throw new Error(data.error || 'Login failed');
       }
 
+      console.log('useAuth: Setting session and user state');
+      // Set the session in the client to synchronize auth state
+      await supabaseClient.auth.setSession(data.session);
       setUser(data.user);
+      console.log('useAuth: User state set immediately after setUser, user:', !!data.user);
+      console.log('useAuth: Session set, checking auth state...');
+      const { data: { session }, error: sessionCheck } = await supabaseClient.auth.getSession();
+      console.log('useAuth: Post-setSession check - session exists:', !!session, 'error:', sessionCheck);
       return data;
     } catch (err) {
       console.error('Login error:', err);
@@ -73,6 +103,7 @@ export function useAuth() {
       throw err;
     } finally {
       setIsLoading(false);
+      console.log('useAuth: Loading set to false');
     }
   }, []);
 

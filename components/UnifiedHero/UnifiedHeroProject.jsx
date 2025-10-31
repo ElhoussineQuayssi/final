@@ -1,14 +1,13 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from 'react';
-import Link from 'next/link';
 import { useProjects } from '@/hooks/useProjects';
 
 // Define the interval for the automatic slideshow (7 seconds)
 const SLIDESHOW_INTERVAL = 7000;
 
 
-const Hero = ({ title, description, images }) => {
+const HeroProject = ({ title, description, images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const { projects, isLoading } = useProjects();
@@ -79,19 +78,20 @@ const Hero = ({ title, description, images }) => {
       {displayImages.map((imageUrl, index) => (
         <div
           key={index}
-          className={`absolute inset-0 h-full w-full bg-cover bg-center ${index === currentIndex ? 'animate-fade-in-image' : ''}`}
+          className="absolute inset-0 h-full w-full bg-cover bg-center"
           style={{
             backgroundImage: `url(${imageUrl})`,
             opacity: index === currentIndex ? 1 : 0,
-            zIndex: index === currentIndex ? 1 : 0
+            zIndex: index === currentIndex ? 1 : 0,
+            transition: `opacity 1500ms ease-in-out`
           }}
         />
       ))}
 
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent z-5" />
-      <div className="absolute inset-0 bg-white/25 z-6" />
-      <div className="absolute inset-0 bg-white/25 z-10" />
+      <div className="absolute inset-0 bg-black/40 z-6" />
+      <div className="absolute inset-0 bg-blue-500/25 z-10" />
 
       {/* Centered Content */}
       <div className="absolute inset-0 flex items-center justify-center z-20">
@@ -102,14 +102,6 @@ const Hero = ({ title, description, images }) => {
           <p className="text-lg md:text-xl lg:text-2xl font-light text-blue-100/90 mb-8 max-w-2xl mx-auto leading-relaxed" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.7)' }}>
             {description}
           </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Link href="/projects" className="bg-blue-500 text-white font-semibold py-3 px-8 rounded-full hover:bg-blue-600 transition-colors duration-300 w-full sm:w-auto text-center">
-                Explorer les Projets
-              </Link>
-              <Link href="/contact" className="border border-blue-400 text-blue-300 font-semibold py-3 px-8 rounded-full hover:bg-blue-500 hover:text-white transition-colors duration-300 w-full sm:w-auto text-center">
-                Nous Contacter
-              </Link>
-          </div>
         </div>
       </div>
 
@@ -147,4 +139,4 @@ const Hero = ({ title, description, images }) => {
   );
 };
 
-export default Hero;
+export default HeroProject;

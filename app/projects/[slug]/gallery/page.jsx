@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Container from "@/components/Container/Container";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
-import UnifiedHero from "@/components/UnifiedHero";
+import UnifiedHeroProject from "@/components/UnifiedHero/UnifiedHeroProject";
 import ProjectGallery from "@/components/ProjectGallery/ProjectGallery";
 import { ProjectsController } from "@/lib/controllers/projects";
 
@@ -30,9 +30,9 @@ export default async function ProjectGalleryPage({ params }) {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FAFAFA" }}>
       {/* Hero Section */}
-      <UnifiedHero
+      <UnifiedHeroProject
         title={`Galerie Photos - ${project.title}`}
-        subtitle="Découvrez tous les moments capturés lors de la réalisation de ce projet."
+        description="Découvrez tous les moments capturés lors de la réalisation de ce projet."
         images={[project.image || "/projects/foundation1.jpg", "/projects/foundation2.jpg", "/projects/foundation3.jpg"]}
       />
 

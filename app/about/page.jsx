@@ -253,7 +253,7 @@ export default function AboutUs() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 px-4 md:px-8">
             {impactStats.map((stat, index) => (
               <StatsCard
                 key={index}
@@ -306,7 +306,7 @@ export default function AboutUs() {
             <div className="grid max-w-6xl grid-cols-1 px-20 mx-auto mt-12 text-center sm:px-0 sm:grid-cols-2 md:mt-20 gap-x-8 md:grid-cols-4 gap-y-12 lg:gap-x-16 xl:gap-x-20">
               {partnershipsData.map((partner, index) => (
                 <PartnershipCard
-                  key={index}
+                  key={`partnership-${partner.name}-${index}`}
                   name={partner.name}
                   logo={partner.logo}
                   index={index}

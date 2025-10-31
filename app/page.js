@@ -259,30 +259,32 @@ export default function Home() {
        </div>
      </Container>
 
-       {/* CTA Section */}
-       <div className="bg-gradient-to-br from-blue-50 to-indigo-50 py-16 rounded-xl shadow-lg">
-         <Container className="text-center">
-           <SectionHeader
-             title="Devenez le Pilier de l'Espoir"
-             subtitle="Rejoignez notre mission de solidarité et créez un impact durable"
-             centered={true}
-           />
-
-           <p className="text-lg text-gray-600 mb-8 max-w-3xl mx-auto mt-6">
-             Chaque don, chaque heure de bénévolat est un investissement direct
-             dans la **dignité** et l'**autonomie** des communautés vulnérables
-             au Maroc. Votre action crée un impact **durable**.
+       {/* Call to Action Section */}
+       <section className="text-center bg-blue-600 text-white p-12 rounded-lg shadow-lg">
+         <Container>
+           <h2 className="text-3xl font-bold mb-6">
+             Rejoignez-Nous dans Cette Aventure Humanitaire
+           </h2>
+           <p className="text-lg mb-8 max-w-2xl mx-auto">
+             Ensemble, nous pouvons transformer des vies, renforcer des
+             communautés et apporter de l'espoir là où il est le plus nécessaire.
            </p>
-
-           <Link
-             href="/contact"
-             className="inline-flex items-center px-10 py-4 rounded-full font-bold text-xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition duration-300"
-             style={{ backgroundColor: ACCENT, color: "white" }}
-           >
-             Soutenir la Fondation
-           </Link>
+           <div className="flex justify-center gap-4 flex-wrap">
+             <Link
+               href="/contact?type=donation"
+               className="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold transition-colors duration-300"
+             >
+               Faire un Don
+             </Link>
+             <Link
+               href="/contact?type=volunteer"
+               className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 rounded-lg font-semibold transition-colors duration-300"
+             >
+               Devenir Bénévole
+             </Link>
+           </div>
          </Container>
-       </div>
+       </section>
     </div>
   );
 }
