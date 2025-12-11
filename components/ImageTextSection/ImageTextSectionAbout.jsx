@@ -19,7 +19,7 @@ const ImageTextSection = ({
         <Image
           src={imageSrc}
           alt={imageAlt}
-          fill
+          width={500} height={400}
           sizes="(max-width: 768px) 100vw, 50vw"
           style={{ objectFit: "cover" }}
           className="filter grayscale opacity-70 transition duration-500"

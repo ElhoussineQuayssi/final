@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { Heart, Users, Target, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useProjects } from "@/hooks/useProjects";
 
 // --- Sub-Components (Concise & Grouped) ---
@@ -27,20 +27,6 @@ const BackgroundPattern = () => (
     </div>
 );
 
-// 2. Decorative Icons
-const DecorativeIcons = () => (
-    <div className="flex justify-center space-x-6 mb-8 opacity-90" aria-hidden="true">
-        {[Heart, Users, Target].map((Icon, i) => (
-            <div
-                key={i}
-                className="p-3 bg-white/20 backdrop-blur-sm rounded-full transition duration-300 hover:scale-110"
-                style={{ animation: `stagger-fade-in 0.8s ease-out ${0.1 + i * 0.1}s both` }}
-            >
-                <Icon className="w-6 h-6 text-white" />
-            </div>
-        ))}
-    </div>
-);
 
 // 3. Scroll Indicator
 const ScrollIndicator = () => (
@@ -208,6 +194,14 @@ const UnifiedHero = ({ title, subtitle, images = [] }) => {
                 <BackgroundSlideshow images={displayImages} currentIndex={currentIndex} />
             ) : null}
 
+            {/* Blue Overlay */}
+            <div
+                className="absolute inset-0"
+                style={{
+                    background: 'linear-gradient(to bottom, rgba(176, 224, 230, 0.7), rgba(100, 149, 237, 0.7))'
+                }}
+            />
+
             {/* Custom Keyframes for Staggered Animation - Moved to globals.css */}
 
             {/* 1. Animated Background */}
@@ -216,8 +210,6 @@ const UnifiedHero = ({ title, subtitle, images = [] }) => {
             {/* 2. Main Content Container */}
             <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 flex flex-col items-center justify-center h-full">
 
-                {/* Decorative Icons */}
-                <DecorativeIcons />
 
                 {/* Main Title (Enhanced Staggered Reveal) */}
                 <h1

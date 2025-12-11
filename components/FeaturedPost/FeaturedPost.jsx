@@ -17,6 +17,7 @@ const FeaturedPost = ({ post }) => {
           <Image
             src={post.image || "/placeholder.svg?height=800&width=1200"}
             alt={post.title}
+            width={400} height={256}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
             quality={85}

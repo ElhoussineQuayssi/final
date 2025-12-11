@@ -17,7 +17,9 @@ export default function AdminLoginPage() {
   }, [isAuthenticated, router]);
 
   const handleLogin = async (formData) => {
+    console.log('handleLogin called with formData:', { email: formData.email, password: '[REDACTED]' });
     try {
+      console.log('Calling login function from useAuth');
       await login({
         email: formData.email,
         password: formData.password,

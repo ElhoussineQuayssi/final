@@ -1,19 +1,32 @@
-const AdminLoginForm = ({ error, isLoading, onSubmit }) => (
-  <div className="min-h-screen flex items-center justify-center p-4">
-    <div className="bg-white rounded-2xl shadow-2xl p-10 w-full max-w-sm scroll-reveal">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold mb-1" style={{ color: "#333333" }}>
-          Accès Administration
-        </h1>
-        <p className="text-gray-600">Connectez-vous pour continuer</p>
-        {error && (
-          <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
-            {error}
-          </div>
-        )}
-      </div>
+const AdminLoginForm = ({ error, isLoading, onSubmit }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted, calling onSubmit');
+    const formData = new FormData(e.target);
+    const data = {
+      email: formData.get('email'),
+      password: formData.get('password'),
+    };
+    console.log('Form data extracted:', { email: data.email, password: '[REDACTED]' });
+    onSubmit(data);
+  };
 
-      <form onSubmit={onSubmit} className="space-y-6">
+  return (
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl shadow-2xl p-10 w-full max-w-sm scroll-reveal">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold mb-1" style={{ color: "#333333" }}>
+            Accès Administration
+          </h1>
+          <p className="text-gray-600">Connectez-vous pour continuer</p>
+          {error && (
+            <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+              {error}
+            </div>
+          )}
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label
             className="block text-sm font-medium mb-1"
@@ -67,9 +80,10 @@ const AdminLoginForm = ({ error, isLoading, onSubmit }) => (
             )}
           </button>
         </div>
-      </form>
+        </form>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default AdminLoginForm;

@@ -85,7 +85,7 @@ export default function BlogPost({ params }) {
             <Image
               src={blog.image || `/placeholder.svg?height=800&width=1200`}
               alt={blog.title}
-              fill
+              width={800} height={400}
               sizes="(max-width: 768px) 100vw, 80vw"
               className="object-cover"
             />
@@ -199,7 +199,8 @@ export default function BlogPost({ params }) {
                               `/placeholder.svg?height=100&width=100`
                             }
                             alt={blog.author.name}
-                            fill
+                            width={64} height={64}
+                            sizes="64px"
                             className="object-cover"
                           />
                         </div>

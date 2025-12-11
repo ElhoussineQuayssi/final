@@ -78,6 +78,7 @@ const ProjectGalleryClient = ({ projectId, projectTitle, className = "" }) => {
               <Image
                 src={imageSrc}
                 alt={`${projectTitle} photo ${index + 1}`}
+                width={300} height={300}
                 fill
                 sizes="(max-width: 768px) 50vw, 33vw"
                 style={{ objectFit: "cover" }}

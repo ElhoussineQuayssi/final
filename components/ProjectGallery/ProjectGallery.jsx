@@ -45,11 +45,11 @@ const ProjectGallery = ({ images, projectTitle, className = "" }) => {
   };
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    setCurrentImageIndex((prev) => (prev + 1) % processedImages.length);
   };
 
   const previousImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+    setCurrentImageIndex((prev) => (prev - 1 + processedImages.length) % processedImages.length);
   };
 
   // Handle image load completion
@@ -127,6 +127,7 @@ const ProjectGallery = ({ images, projectTitle, className = "" }) => {
             <Image
               src={imageSrc}
               alt={`${projectTitle} photo ${index + 1}`}
+              width={300} height={300}
               fill
               sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
               quality={80}

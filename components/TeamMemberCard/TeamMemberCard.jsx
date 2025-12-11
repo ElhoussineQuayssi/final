@@ -27,7 +27,7 @@ const TeamMemberCard = ({ name, role, imageSrc, imageAlt, linkedin, email, phone
         <Image
           src={imageSrc}
           alt={imageAlt || name}
-          fill
+          width={300} height={300}
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
           quality={85}
           placeholder="blur"

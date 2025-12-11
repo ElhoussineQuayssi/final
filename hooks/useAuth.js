@@ -51,6 +51,7 @@ export function useAuth() {
     setError(null);
 
     try {
+      console.log('Attempting login with credentials:', { email: credentials.email, password: '[REDACTED]' });
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
@@ -59,7 +60,11 @@ export function useAuth() {
         body: JSON.stringify(credentials),
       });
 
+      console.log('Login fetch response status:', response.status);
+      console.log('Login fetch response headers:', Object.fromEntries(response.headers.entries()));
+
       const data = await response.json();
+      console.log('Login response data:', data);
 
       if (!response.ok) {
         throw new Error(data.error || 'Login failed');
@@ -69,6 +74,8 @@ export function useAuth() {
       return data;
     } catch (err) {
       console.error('Login error:', err);
+      console.error('Error type:', err.constructor.name);
+      console.error('Error message:', err.message);
       setError(err.message);
       throw err;
     } finally {

@@ -57,6 +57,7 @@ const StyledProjectHero = ({ title, excerpt, image, categories }) => (
         <Image
           src={image}
           alt={title}
+          width={600} height={400}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           style={{ objectFit: "cover" }}

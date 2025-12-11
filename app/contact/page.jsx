@@ -17,6 +17,7 @@ import Container from "@/components/Container/Container";
 import Input from "@/components/Input/Input";
 import Textarea from "@/components/Textarea/Textarea";
 import Button from "@/components/Button/Button";
+import { useProjects } from "@/hooks/useProjects";
 
 // --- Design System Configuration (Minimalist Light Blue) ---
 const ACCENT = "#6495ED"; // Cornflower Blue
@@ -46,15 +47,7 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
 
-  // Available projects from the projects page
-  const projects = [
-    "Forage de Puits",
-    "Construction d'Écoles",
-    "Village Autosuffisant",
-    "Programme Santé",
-    "Agriculture Durable",
-    "Formation Professionnelle",
-  ];
+  const { projects, isLoading, isError } = useProjects();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -360,12 +353,15 @@ export default function Contact() {
                              value={formData.project}
                              onChange={handleInputChange}
                              required
-                             className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white transition-all duration-200 hover:border-gray-400 text-gray-900 text-sm appearance-none"
+                             disabled={isLoading || isError}
+                             className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white transition-all duration-200 hover:border-gray-400 text-gray-900 text-sm appearance-none disabled:bg-gray-100 disabled:cursor-not-allowed"
                            >
-                             <option value="">Sélectionnez un projet</option>
-                             {projects.map((project, index) => (
-                               <option key={index} value={project}>
-                                 {project}
+                             <option value="">
+                               {isLoading ? "Chargement des projets..." : isError ? "Erreur lors du chargement des projets" : "Sélectionnez un projet"}
+                             </option>
+                             {projects?.map((project) => (
+                               <option key={project.id} value={project.id}>
+                                 {project.title}
                                </option>
                              ))}
                            </select>

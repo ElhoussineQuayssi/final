@@ -6,13 +6,14 @@ import { ExternalLink, Building2, Users, Target } from "lucide-react";
 
 const PartnershipCard = ({ name, logo, index }) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isScaled, setIsScaled] = useState(false);
 
   return (
     <div
-      className="group relative w-full h-64 cursor-pointer animate-fade-in"
+      className="relative w-full h-64 cursor-pointer animate-fade-in"
       style={{ animationDelay: `${index * 0.1}s` }}
-      onMouseEnter={() => setIsFlipped(true)}
-      onMouseLeave={() => setIsFlipped(false)}
+      onMouseEnter={() => { setIsFlipped(true); setIsScaled(true); }}
+      onMouseLeave={() => { setIsFlipped(false); setIsScaled(false); }}
     >
       {/* Flip Card Container */}
       <div
@@ -29,17 +30,14 @@ const PartnershipCard = ({ name, logo, index }) => {
           className="absolute inset-0 w-full h-full rounded-2xl shadow-lg backface-hidden overflow-hidden"
           style={{ backfaceVisibility: 'hidden' }}
         >
-          {/* Background with subtle overlay */}
-          <div className="absolute inset-0 bg-linear-to-br from-blue-50 to-indigo-50 opacity-20"></div>
-
           {/* Image Container */}
           <div className="relative w-full h-full flex items-center justify-center p-6">
             {logo ? (
-              <div className="relative w-40 h-40 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-105">
+              <div className={`relative w-40 h-40 rounded-xl overflow-hidden shadow-lg transition-transform duration-300 ${isScaled ? 'scale-105' : ''}`}>
                 <Image
                   src={logo}
                   alt={`${name} logo`}
-                  fill
+                  width={160} height={160}
                   sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
                   quality={90}
                   placeholder="blur"
@@ -49,7 +47,7 @@ const PartnershipCard = ({ name, logo, index }) => {
                 />
               </div>
             ) : (
-              <div className="w-40 h-40 rounded-xl bg-gray-100 flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-105">
+              <div className={`w-40 h-40 rounded-xl bg-gray-100 flex items-center justify-center shadow-lg transition-transform duration-300 ${isScaled ? 'scale-105' : ''}`}>
                 <Building2 size={50} style={{ color: '#9CA3AF' }} />
               </div>
             )}

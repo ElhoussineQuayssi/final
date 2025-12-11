@@ -89,6 +89,7 @@ const ImageTextSection = ({
                   src={imageSrc[0]}
                   alt={imageAlt || "Image"}
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   key={0}
                   style={{ objectFit: "cover" }}
                 />
@@ -99,6 +100,7 @@ const ImageTextSection = ({
                   src={imageSrc[1]}
                   alt={imageAlt || "Image"}
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   key={1}
                   style={{ objectFit: "cover" }}
                 />
@@ -109,6 +111,7 @@ const ImageTextSection = ({
                   src={imageSrc[2]}
                   alt={imageAlt || "Image"}
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   key={2}
                   style={{ objectFit: "cover" }}
                 />

@@ -95,6 +95,7 @@ const ImageModal = ({
             alt={`${projectTitle} - Image ${currentIndex + 1}`}
             width={800}
             height={600}
+            sizes="(max-width: 768px) 100vw, 800px"
             className="max-w-full max-h-full object-contain"
             style={{ maxHeight: '90vh' }}
           />
