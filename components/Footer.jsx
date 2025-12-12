@@ -205,13 +205,15 @@ export default function Footer() {
                   style={{ color: WHITE_TEXT_MUTED }}
                   className="group-hover:text-white transition duration-200 text-base leading-relaxed"
                 >
-                  **22 Bd Hassan II, Immeuble 83, 2ème étage, Rabat, Maroc**
+
+                  **152 bd yacoub al mansour, Casablanca, Morocco**
                 </span>
               </li>
               <li className="flex items-center group">
                 <Phone style={IconStyle} />
                 <a
-                  href="tel:0537702346"
+
+                  href="tel:0522993699"
                   style={{ color: WHITE_TEXT_MUTED }}
                   className="transition-colors text-base group-hover:text-white"
                   onMouseEnter={(e) => (e.target.style.color = ACCENT_BLUE)}
@@ -219,7 +221,8 @@ export default function Footer() {
                     (e.target.style.color = WHITE_TEXT_MUTED)
                   }
                 >
-                  **05377-02346**
+
+                  **05229-93699**
                 </a>
               </li>
               <li className="flex items-center group">

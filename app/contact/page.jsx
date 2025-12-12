@@ -161,7 +161,8 @@ export default function Contact() {
                      {
                        icon: MapPin,
                        title: "Adresse du Siège:",
-                       details: "22 Bd Hassan II, Immeuble 83, 2ème étage, Rabat, Maroc",
+
+                       details: "152 bd yacoub al mansour, Casablanca, Morocco",
                        isLink: false,
                      },
                      {
@@ -174,8 +175,10 @@ export default function Contact() {
                      {
                        icon: Phone,
                        title: "Ligne Directe:",
-                       details: "05377-02346",
-                       href: "tel:0537702346",
+
+                       details: "05229-93699",
+
+                       href: "tel:0522993699",
                        isLink: true,
                      },
                      {
@@ -226,7 +229,8 @@ export default function Contact() {
                {/* Google Map Integration */}
                <div className="rounded-2xl overflow-hidden h-80 relative shadow-inner border bg-white">
                  <iframe
-                   src="https://maps.google.com/maps?q=22+Bd+Hassan+II,+Rabat,+Maroc&t=&z=15&ie=UTF8&iwloc=&output=embed"
+
+                   src="https://maps.google.com/maps?q=152+bd+yacoub+al+mansour,+Casablanca,+Morocco&t=&z=15&ie=UTF8&iwloc=&output=embed"
                    width="100%"
                    height="100%"
                    style={{ border: 0 }}
